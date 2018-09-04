@@ -1,0 +1,4 @@
+ls
+git clone https://github.com/emacs-evil/evil-collection.git 
+ls
+Resolving de:lstas: 100% (2375/2375), done.
