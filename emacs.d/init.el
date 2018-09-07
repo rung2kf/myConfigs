@@ -66,7 +66,7 @@
 
 ;;Customize GUI
 ;;(menu-bar-mode -1)
-;;(toggle-scroll-bar -1)
+(toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
 ;;Enable vim mode all the time
@@ -139,12 +139,18 @@
 
 
 ;;------------------------------------
+;;old Vim shortcuts
+;; pys w !python -m pyflakes   ;; python syntax check
+
+
+;;------------------------------------
 ;;evil-leader dynamic key binding customizations
 (global-evil-leader-mode)
 (evil-leader/set-leader "|")    ; change leader key
 (evil-leader/set-key
   "c" 'elscreen-create          ;; create new tab
   "g" 'elscreen-goto            ;; go to a tab
+  "ln" 'global-display-line-numbers-mode    ;; toggle line number
   "t" 'elscreen-next            ;; go to next tab
   "T" 'elscreen-previous        ;; go to previous tab
 )
@@ -155,6 +161,9 @@
   "N" 'eww-new                  ;; open url in new buffer
   "n" 'eww-open-in-new-buffer   ;; follow link in new buffer
 )
+;;(evil-leader/set-key-for-mode 'evil-normal-mode
+;;  "pys" 'eww-lnum-follow
+;;)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -168,7 +177,7 @@
  '(cua-normal-cursor-color "#657b83")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes (quote (wombat)))
+ '(custom-enabled-themes (quote (solarized-dark)))
  '(custom-safe-themes
    (quote
     ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
