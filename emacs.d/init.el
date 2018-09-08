@@ -24,12 +24,18 @@
 (package-initialize)
 
 
+(setq evil-want-integration nil)  ; required for evil-collection
+;; If you want to use Evil in the minibuffer, you'll have to enable like so..
+(setq evil-collection-setup-minibuffer t)
+
 ;;------------------------------------
 ;; manually installed packages
 ;; cloned from https://github.com/emacs-evil/evil-collection.git; i changed some keymappings.
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/evil-collection" user-emacs-directory))
 ;; cloned from https://github.com/cofi/evil-leader.git
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/evil-leader" user-emacs-directory))
+;; https://github.com/juanjux/evil-search-highlight-persist.git
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/evil-search-highlight-persist" user-emacs-directory))
 
 
 ;;------------------------------------
@@ -46,13 +52,14 @@
         eww-lnum
         twittering-mode
         elscreen
+        highlight
+        flycheck
         magit))
 (el-get 'sync my:el-get-packages)
 (el-get 'sync)
 
 
 ;;------------------------------------
-(setq evil-want-integration nil)  ; required for evil-collection
 (require 'evil)
 (require 'evil-commentary)
 (require 'evil-surround)
@@ -63,6 +70,10 @@
 (require 'powerline)
 ;;(require 'eww-lnum)
 (require 'elscreen)
+(require 'highlight)
+(require 'evil-search-highlight-persist)
+(require 'helm)
+(require 'helm-config)
 
 ;;Customize GUI
 ;;(menu-bar-mode -1)
@@ -82,12 +93,16 @@
     (global-display-line-numbers-mode))
 ;;turn on better modeline display
 (powerline-center-evil-theme)
-(global-evil-surround-mode 1)
 (elscreen-start)
+;; clear the highlights with the 'evil-search-highlight-persist-remove-all' command
+(global-evil-search-highlight-persist t)
+;; Helm mode
+(helm-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 
 ;;------------------------------------
-;;Enable keybindings
+;;Enable additional keybindings for evil mode
 (when (require 'evil-collection nil t)
     (evil-collection-init))
 ;;(evil-collection-init 'eww) 
@@ -161,7 +176,7 @@
   "N" 'eww-new                  ;; open url in new buffer
   "n" 'eww-open-in-new-buffer   ;; follow link in new buffer
 )
-;;(evil-leader/set-key-for-mode 'evil-normal-mode
+;;(evil-leader/set-key-for-mode 'evil-normal-state-map
 ;;  "pys" 'eww-lnum-follow
 ;;)
 
@@ -172,12 +187,14 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#eee8d5" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#839496"])
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#657b83")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes (quote (solarized-dark)))
+ '(custom-enabled-themes (quote (wheatgrass)))
  '(custom-safe-themes
    (quote
     ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
