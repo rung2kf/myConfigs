@@ -131,16 +131,12 @@
     (switch-to-buffer (generate-new-buffer "eww"))
     (eww-mode)
         (eww url)))
-;; Remap keys from evil-collection-eww -- don't work
-;; 
+;; Remap keys from evil-collection-eww
  (evil-collection-define-key 'normal 'eww-mode-map
-    ;; (kbd "S-<left>")  'evil-window-top
-    ;; (kbd "S-<right>")  'evil-window-bottom
     (kbd "S-<left>") 'eww-back-url
     (kbd "S-<right>") 'eww-forward-url
     "H" 'evil-window-top
-    "L" 'eww-forward-url
-    "O" 'eww-new             ; new browser tab/session
+    "L" 'evil-window-bottom
 )
 
 ;; From http://ergoemacs.org/emacs/emacs_eww_web_browser.html
