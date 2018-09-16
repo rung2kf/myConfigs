@@ -1,0 +1,12 @@
+[submodule "emacs.d/el-get"]
+	path = emacs.d/el-get
+	url = https://github.com/dimitri/el-get.git
+[submodule "emacs.d/evil-search-highlight-persist"]
+	path = emacs.d/evil-search-highlight-persist
+	url = https://github.com/juanjux/evil-search-highlight-persist.git
+[submodule "emacs.d/evil-leader"]
+	path = emacs.d/evil-leader
+	url = https://github.com/cofi/evil-leader.git
+[submodule "emacs.d/evil-collection"]
+	path = emacs.d/evil-collection
+	url = https://github.com/emacs-evil/evil-collection.git
