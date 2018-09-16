@@ -25,6 +25,7 @@
 
 
 (setq evil-want-integration nil)  ; required for evil-collection
+(setq evil-want-keybinding nil)  ; required for evil-collection
 ;; If you want to use Evil in the minibuffer, you'll have to enable like so..
 (setq evil-collection-setup-minibuffer t)
 
@@ -130,18 +131,23 @@
     (switch-to-buffer (generate-new-buffer "eww"))
     (eww-mode)
         (eww url)))
-;; Unbind keys from evil-collection-eww -- don't work
-;;(eval-after-load 'evil-collection
-;;   '(define-key eww-mode-map "H" nil))
-;;(define-key eww-mode-map "H" nil)
-;;(define-key eww-mode-map "L" nil)
-;;(evil-collection-define-key 'normal 'eww-mode-map
-;;    "H" nil
-;;    "L" nil)
+;; Remap keys from evil-collection-eww -- don't work
+;; 
+ (evil-collection-define-key 'normal 'eww-mode-map
+    ;; (kbd "S-<left>")  'evil-window-top
+    ;; (kbd "S-<right>")  'evil-window-bottom
+    (kbd "S-<left>") 'eww-back-url
+    (kbd "S-<right>") 'eww-forward-url
+    "H" 'evil-window-top
+    "L" 'eww-forward-url
+    "O" 'eww-new             ; new browser tab/session
+)
 
 ;; From http://ergoemacs.org/emacs/emacs_eww_web_browser.html
 ;; make emacs always use its own browser for opening URL links
 (setq browse-url-browser-function 'eww-browse-url)
+;; change eww search engine
+(setq eww-search-prefix "https://google.com/search?q=")
 
 ;; Hotkey for eww-lnum (follow links by numbers)
 ;; eval-after-load replaces 'require'
