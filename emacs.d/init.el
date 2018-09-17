@@ -85,8 +85,6 @@
 (evil-mode t)
 (evil-commentary-mode)
 (evil-surround-mode)
-(global-set-key (kbd "C-c a") 'evil-numbers/inc-at-pt)
-(global-set-key (kbd "C-c x") 'evil-numbers/dec-at-pt)
 (global-evil-matchit-mode 1)
 ;;(global-linum-mode t)
 ;;turn on line number display
@@ -99,7 +97,6 @@
 (global-evil-search-highlight-persist t)
 ;; Helm mode
 (helm-mode 1)
-(global-set-key (kbd "M-x") 'helm-M-x)
 
 
 ;;------------------------------------
@@ -161,12 +158,23 @@
 
 
 ;;------------------------------------
+;;global key binding customizations
+(global-set-key [(super =)] 'text-scale-increase)
+(global-set-key [(super +)] 'text-scale-increase)
+(global-set-key [(super -)] 'text-scale-decrease)
+(global-set-key (kbd "C-c a") 'evil-numbers/inc-at-pt)
+(global-set-key (kbd "C-c x") 'evil-numbers/dec-at-pt)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+
+;;------------------------------------
 ;;evil-leader dynamic key binding customizations
 (global-evil-leader-mode)
 (evil-leader/set-leader "|")    ; change leader key
 (evil-leader/set-key
   "c" 'elscreen-create          ;; create new tab
   "g" 'elscreen-goto            ;; go to a tab
+  "k" 'elscreen-kill            ;; kill the tab
   "ln" 'global-display-line-numbers-mode    ;; toggle line number
   "t" 'elscreen-next            ;; go to next tab
   "T" 'elscreen-previous        ;; go to previous tab
