@@ -128,6 +128,8 @@
     (switch-to-buffer (generate-new-buffer "eww"))
     (eww-mode)
         (eww url)))
+;; change eww search engine
+(setq eww-search-prefix "https://google.com/search?q=")
 ;; Remap keys from evil-collection-eww
  (evil-collection-define-key 'normal 'eww-mode-map
     (kbd "S-<left>") 'eww-back-url
@@ -136,20 +138,16 @@
     "L" 'evil-window-bottom
 )
 
+
+;;------------------------------------
+;;general customizations
 ;; From http://ergoemacs.org/emacs/emacs_eww_web_browser.html
 ;; make emacs always use its own browser for opening URL links
 (setq browse-url-browser-function 'eww-browse-url)
-;; change eww search engine
-(setq eww-search-prefix "https://google.com/search?q=")
-
-;; Hotkey for eww-lnum (follow links by numbers)
-;; eval-after-load replaces 'require'
-;; (eval-after-load 'eww-lnum
-;;   '(define-key 'normal eww-mode-map (kbd "S-<up>") 'eww-lnum-universal))
-;; (eval-after-load 'eww-lnum
-;;   '(define-key 'normal eww-mode-map (kbd "S-<down>") 'eww-lnum-follow))
-;;(define-key eww-mode-map (kbd "S-<up>") 'eww-lnum-follow)
-;;(define-key eww-mode-map (kbd "S-<up>") 'eww-lnum-universal)
+;;The most basic logging is to keep track of when a certain TODO item
+;;was finished. This is achieved with this line:
+(setq org-log-done 'time)
+;;(setq org-support-shift-select t)
 
 
 ;;------------------------------------
