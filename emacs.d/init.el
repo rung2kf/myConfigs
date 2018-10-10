@@ -188,6 +188,28 @@
 ;;  "pys" 'eww-lnum-follow
 ;;)
 
+
+;;------------------------------------
+;;Org-mode customizations
+;;Set up capture templates
+(setq org-default-notes-file (concat org-directory "/Users/rung/myData/orgs/cnotes.org"))
+(define-key global-map "\C-cc" 'org-capture)
+;;Set up capture templates
+(setq org-capture-templates
+ '(("1" "Genapsys Todo" entry (file+headline "/Users/rung/myData/orgs/gentodos.org" "Tasks")
+        "* TODO %?\n  %i\n  %a") 
+   ("t" "Todo" entry (file+headline "/Users/rung/myData/orgs/ctodos.org" "Tasks")
+        "* TODO %?\n  %i\n  %a")
+   ("u" "OI Todo" entry (file+headline "/Users/rung/myData/orgs/otodos.org" "OI Tasks")
+        "* TODO %?\n  %i\n  %a")
+   ("2" "Genapsys Journal" entry (file+olp+datetree "/Users/rung/myData/orgs/genjournal.org")
+        "* %?\nEntered on %U\n  %i\n  %a")
+   ("j" "Journal" entry (file+olp+datetree "/Users/rung/myData/orgs/cjournal.org")
+        "* %?\nEntered on %U\n  %i\n  %a")
+   ("k" "OI Journal" entry (file+olp+datetree "/Users/rung/myData/orgs/ojournal.org")
+        "* %?\nEntered on %U\n  %i\n  %a")))
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
