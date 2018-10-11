@@ -75,6 +75,7 @@
 (require 'evil-search-highlight-persist)
 (require 'helm)
 (require 'helm-config)
+(require 'org)
 
 ;;Customize GUI
 ;;(menu-bar-mode -1)
@@ -144,10 +145,6 @@
 ;; From http://ergoemacs.org/emacs/emacs_eww_web_browser.html
 ;; make emacs always use its own browser for opening URL links
 (setq browse-url-browser-function 'eww-browse-url)
-;;The most basic logging is to keep track of when a certain TODO item
-;;was finished. This is achieved with this line:
-(setq org-log-done 'time)
-;;(setq org-support-shift-select t)
 
 
 ;;------------------------------------
@@ -191,18 +188,23 @@
 
 ;;------------------------------------
 ;;Org-mode customizations
+(setq org-directory "~/genapsys/notes/orgs")
+;;The most basic logging is to keep track of when a certain TODO item
+;;was finished. This is achieved with this line:
+(setq org-log-done 'time)
+;;(setq org-support-shift-select t)
 ;;Set up capture templates
-(setq org-default-notes-file (concat org-directory "/Users/rung/myData/orgs/cnotes.org"))
+(setq org-default-notes-file (concat org-directory "/cnotes.org"))
 (define-key global-map "\C-cc" 'org-capture)
 ;;Set up capture templates
 (setq org-capture-templates
- '(("1" "Genapsys Todo" entry (file+headline "/Users/rung/myData/orgs/gentodos.org" "Tasks")
+ '(("1" "Genapsys Todo" entry (file+headline "~/genapsys/notes/orgs/gentodos.org" "Tasks")
         "* TODO %?\n  %i\n  %a") 
-   ("t" "Todo" entry (file+headline "/Users/rung/myData/orgs/ctodos.org" "Tasks")
+   ("t" "Todo" entry (file+headline "/ctodos.org" "Tasks")
         "* TODO %?\n  %i\n  %a")
-   ("u" "OI Todo" entry (file+headline "/Users/rung/myData/orgs/otodos.org" "OI Tasks")
+   ("u" "OI Todo" entry (file+headline "/otodos.org" "OI Tasks")
         "* TODO %?\n  %i\n  %a")
-   ("2" "Genapsys Journal" entry (file+olp+datetree "/Users/rung/myData/orgs/genjournal.org")
+   ("2" "Genapsys Journal" entry (file+olp+datetree "~/genapsys/notes/orgs/genjournal.org")
         "* %?\nEntered on %U\n  %i\n  %a")
    ("j" "Journal" entry (file+olp+datetree "/Users/rung/myData/orgs/cjournal.org")
         "* %?\nEntered on %U\n  %i\n  %a")
